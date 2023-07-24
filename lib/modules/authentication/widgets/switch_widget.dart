@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mc_application/core/appearances/colors.dart';
-import 'package:mc_application/modules/authentication/login_page_model.dart';
+import 'package:mc_application/modules/authentication/login/login_page_model.dart';
 
 class SwitchButton extends StatefulWidget {
   final LoginPageModel model;

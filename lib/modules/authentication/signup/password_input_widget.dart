@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mc_application/modules/authentication/login_page_model.dart';
+import 'package:mc_application/modules/authentication/signup/signup_page_model.dart';
 import 'package:remixicon/remixicon.dart';
 
 class PasswordInputWidget extends StatefulWidget {
-  final LoginPageModel model;
+  final SignUpPageModel model;
   const PasswordInputWidget(this.model, {Key? key}) : super(key: key);
 
   @override

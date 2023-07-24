@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mc_application/modules/authentication/login_page_model.dart';
+import 'package:mc_application/modules/authentication/signup/signup_page_model.dart';
 
 class UserNameInputWidget extends StatefulWidget {
-  final LoginPageModel model;
+  final SignUpPageModel model;
 
   const UserNameInputWidget(this.model, {Key? key}) : super(key: key);
 

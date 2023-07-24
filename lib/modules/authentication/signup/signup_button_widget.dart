@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:mc_application/core/appearances/colors.dart';
-import 'package:mc_application/modules/authentication/login_page_model.dart';
+import 'package:mc_application/modules/authentication/signup/signup_page_model.dart';
 
-class LoginButton extends StatefulWidget {
-  final LoginPageModel model;
-  const LoginButton(this.model, {Key? key}) : super(key: key);
+class SignUpButton extends StatefulWidget {
+  final SignUpPageModel model;
+  const SignUpButton(this.model, {Key? key}) : super(key: key);
 
   @override
-  State<LoginButton> createState() => _LoginButtonState();
+  State<SignUpButton> createState() => _SignUpButtonState();
 }
 
 final ButtonStyle style =
     ElevatedButton.styleFrom(backgroundColor: primaryGreen);
 
-class _LoginButtonState extends State<LoginButton> {
+class _SignUpButtonState extends State<SignUpButton> {
   @override
   Widget build(BuildContext context) {
     return buildExpandedButton();
