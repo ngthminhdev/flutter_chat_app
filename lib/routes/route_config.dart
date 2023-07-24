@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mc_application/modules/authentication/login_page.dart';
-import 'package:mc_application/modules/authentication/signup_page.dart';
+import 'package:mc_application/modules/authentication/login/login_page.dart';
+import 'package:mc_application/modules/authentication/signup/signup_page.dart';
 
 class RouteNames {
   static const String home = 'Home';

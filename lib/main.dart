@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mc_application/app_data.dart';
 import 'package:mc_application/core/helpers/logger_helper.dart';
-import 'package:mc_application/modules/authentication/login_page.dart';
-import 'package:mc_application/modules/authentication/login_page_model.dart';
-import 'package:mc_application/modules/authentication/signup_page_model.dart';
+import 'package:mc_application/modules/authentication/login/login_page.dart';
+import 'package:mc_application/modules/authentication/login/login_page_model.dart';
+import 'package:mc_application/modules/authentication/signup/signup_page_model.dart';
 import 'package:mc_application/routes/router.dart' as main_router;
 import 'package:provider/provider.dart';
 
