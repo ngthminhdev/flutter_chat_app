@@ -31,6 +31,7 @@ class ModalProgressHUD extends StatefulWidget {
   final bool dismissible;
   final Widget child;
   final Widget? progressIndicator;
+  // ignore: prefer_const_constructors_in_immutables
   ModalProgressHUD({
     Key? key,
     required this.inAsyncCall,
@@ -40,16 +41,15 @@ class ModalProgressHUD extends StatefulWidget {
     this.offset,
     this.dismissible = false,
     required this.child,
-  })  : assert(child != null),
-        assert(inAsyncCall != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ModalProgressHUDState createState() => _ModalProgressHUDState();
 }
 
 class _ModalProgressHUDState extends State<ModalProgressHUD> {
-  Widget _progressIndicator = Loading();
+  final Widget _progressIndicator = Loading();
 
   @override
   Widget build(BuildContext context) {
@@ -57,31 +57,31 @@ class _ModalProgressHUDState extends State<ModalProgressHUD> {
     widgetList.add(widget.child);
     if (widget.inAsyncCall) {
       Widget layOutProgressIndicator;
-      if (widget.offset == null)
+      if (widget.offset == null) {
         layOutProgressIndicator = Center(
             child: (widget.progressIndicator != null)
                 ? widget.progressIndicator!
                 : _progressIndicator);
-      else {
+      } else {
         layOutProgressIndicator = Positioned(
+          left: widget.offset!.dx,
+          top: widget.offset!.dy,
           child: (widget.progressIndicator != null)
               ? widget.progressIndicator!
               : _progressIndicator,
-          left: widget.offset!.dx,
-          top: widget.offset!.dy,
         );
       }
       final modal = [
-        new Opacity(
-          child: new ModalBarrier(
-              dismissible: widget.dismissible, color: widget.color),
+        Opacity(
           opacity: widget.opacity,
+          child: ModalBarrier(
+              dismissible: widget.dismissible, color: widget.color),
         ),
         layOutProgressIndicator
       ];
       widgetList += modal;
     }
-    return new Stack(
+    return Stack(
       children: widgetList,
     );
   }
