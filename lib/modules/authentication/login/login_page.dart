@@ -3,19 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:mc_application/core/appearances/colors.dart';
 import 'package:mc_application/core/bases/base_mixin_model.dart';
 import 'package:mc_application/core/widgets/loading/loading_widget.dart';
+import 'package:mc_application/modules/authentication/login/login_page_model.dart';
 import 'package:mc_application/modules/authentication/methods.dart';
-import 'package:mc_application/modules/authentication/signup_page_model.dart';
+import 'package:mc_application/modules/authentication/login/login_button_widget.dart';
+import 'package:mc_application/modules/authentication/login/password_input_widget.dart';
+import 'package:mc_application/modules/authentication/widgets/switch_widget.dart';
+import 'package:mc_application/modules/authentication/login/username_input_widget.dart';
 import 'package:mc_application/resources/modal_progress_hud.dart';
 import 'package:need_resume/need_resume.dart';
 
-class SignUpPage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends ResumableState<SignUpPage>
-    with MixinModel<SignUpPageModel> {
-  SignUpPageModel signUpPageModel = SignUpPageModel();
+class _LoginPageState extends ResumableState<LoginPage>
+    with MixinModel<LoginPageModel> {
+  LoginPageModel loginPageModel = LoginPageModel();
 
   @override
   void initState() {
@@ -33,19 +37,19 @@ class _SignUpPageState extends ResumableState<SignUpPage>
   }
 
   @override
-  Function(BuildContext ctx, SignUpPageModel model, Widget? child)
+  Function(BuildContext ctx, LoginPageModel model, Widget? child)
       withBuilder() {
-    return (BuildContext context, SignUpPageModel model, Widget? child) {
+    return (BuildContext context, LoginPageModel model, Widget? child) {
       return ModalProgressHUD(
           child: buildBody(context),
           progressIndicator: Loading(),
-          inAsyncCall: signUpPageModel.busy);
+          inAsyncCall: loginPageModel.busy);
     };
   }
 
   @override
-  SignUpPageModel withModel() {
-    return signUpPageModel;
+  LoginPageModel withModel() {
+    return loginPageModel;
   }
 
   buildBody(context) {
@@ -69,21 +73,21 @@ class _SignUpPageState extends ResumableState<SignUpPage>
                   buildPassport(),
                   const SizedBox(height: 20),
                   const Text(
-                    'Sign up',
+                    'Log in',
                     style: TextStyle(
                       fontSize: 21,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                   const SizedBox(height: 10),
-                  // UserNameInputWidget(signUpPageModel),
+                  UserNameInputWidget(loginPageModel),
                   const SizedBox(height: 20),
-                  // PasswordInputWidget(signUpPageModel),
+                  PasswordInputWidget(loginPageModel),
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // SwitchButton(signUpPageModel),
+                      SwitchButton(loginPageModel),
                       const Text(
                         'Remember me',
                         style: TextStyle(
@@ -94,23 +98,37 @@ class _SignUpPageState extends ResumableState<SignUpPage>
                     ],
                   ),
                   const SizedBox(height: 40),
-                  // LoginButton(signUpPageModel),
-
+                  LoginButton(loginPageModel),
+                  const SizedBox(height: 40),
+                  Center(
+                    child: RichText(
+                        text: TextSpan(children: <TextSpan>[
+                      TextSpan(
+                        text: 'Forgot your password?',
+                        style: const TextStyle(
+                            color: primaryGreen, fontWeight: FontWeight.w500),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            print('click to forget password');
+                          },
+                      ),
+                    ])),
+                  ),
                   const SizedBox(height: 40),
                   Center(
                     child: RichText(
                         text: TextSpan(children: <TextSpan>[
                       const TextSpan(
-                        text: 'Have a account? ',
+                        text: 'Don\'t? have a account? ',
                         style: TextStyle(color: Colors.black),
                       ),
                       TextSpan(
-                        text: 'Log in now!',
+                        text: 'Sign up now!',
                         style: const TextStyle(
                             color: primaryGreen, fontWeight: FontWeight.w500),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            print('click to sign up');
+                            loginPageModel.moveToSignUp(context);
                           },
                       ),
                     ])),
@@ -126,7 +144,7 @@ class _SignUpPageState extends ResumableState<SignUpPage>
 
   @override
   void dispose() {
-    signUpPageModel.dispose();
+    loginPageModel.dispose();
     super.dispose();
   }
 }
