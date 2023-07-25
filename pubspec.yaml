@@ -42,6 +42,7 @@ dependencies:
   remixicon: ^1.0.0
   page_transition: ^2.0.9
   shared_preferences: ^2.2.0
+  sqflite: ^2.2.8+4
 
 dev_dependencies:
   flutter_test:
