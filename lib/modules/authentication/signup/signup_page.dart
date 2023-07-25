@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mc_application/core/appearances/colors.dart';
 import 'package:mc_application/core/bases/base_mixin_model.dart';
+import 'package:mc_application/core/helpers/screen_helper.dart';
 import 'package:mc_application/core/widgets/loading/loading_widget.dart';
 import 'package:mc_application/modules/authentication/methods.dart';
 import 'package:mc_application/modules/authentication/signup/password_input_widget.dart';
@@ -19,6 +20,10 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends ResumableState<SignUpPage>
     with MixinModel<SignUpPageModel> {
   SignUpPageModel signUpPageModel = SignUpPageModel();
+  double widthScreen = screenHelper.getWidth();
+  double heightScreen = screenHelper.getHeight();
+  double yPadding = screenHelper.getHeightByPercent(0.02);
+  double xPadding = screenHelper.getWidthByPercent(0.03);
 
   @override
   Widget build(BuildContext context) {
@@ -51,16 +56,17 @@ class _SignUpPageState extends ResumableState<SignUpPage>
         resizeToAvoidBottomInset: true,
         body: SafeArea(
           child: Container(
-            margin: const EdgeInsets.only(top: 10),
-            padding: const EdgeInsets.all(20),
+            margin: EdgeInsets.only(top: yPadding),
+            padding:
+                EdgeInsets.symmetric(vertical: yPadding, horizontal: xPadding),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   buildAppName(),
-                  const SizedBox(height: 40),
+                  SizedBox(height: screenHelper.setHeight(40)),
                   buildPassport(),
-                  const SizedBox(height: 20),
+                  SizedBox(height: screenHelper.setHeight(20)),
                   const Text(
                     'Sign up',
                     style: TextStyle(
@@ -68,13 +74,13 @@ class _SignUpPageState extends ResumableState<SignUpPage>
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: screenHelper.setHeight(10)),
                   UserNameInputWidget(signUpPageModel),
-                  const SizedBox(height: 20),
+                  SizedBox(height: screenHelper.setHeight(20)),
                   PasswordInputWidget(signUpPageModel),
-                  const SizedBox(height: 80),
+                  SizedBox(height: screenHelper.setHeight(80)),
                   SignUpButton(signUpPageModel),
-                  const SizedBox(height: 100),
+                  SizedBox(height: screenHelper.setHeight(100)),
                   Center(
                     child: RichText(
                         text: TextSpan(children: <TextSpan>[

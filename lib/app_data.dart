@@ -7,7 +7,6 @@ class AppData {
   int? version = 0;
   String apiHost = '';
   String? apiVersion = '';
-  String? webUrl = '';
   String apiUrl = '';
   String? dbName = '';
 
@@ -16,7 +15,6 @@ class AppData {
 
   String deviceInfo = '';
   int os = 1;
-  String esHost = '';
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

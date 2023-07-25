@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mc_application/app_data.dart';
 import 'package:mc_application/core/helpers/logger_helper.dart';
+import 'package:mc_application/core/helpers/screen_helper.dart';
 import 'package:mc_application/modules/authentication/login/login_page.dart';
 import 'package:mc_application/modules/authentication/login/login_page_model.dart';
 import 'package:mc_application/modules/authentication/signup/signup_page_model.dart';
@@ -24,10 +25,12 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
+    //get screen info
+    appData.heightScreen = screenHelper.getOriginHeight(context);
+    appData.widthScreen = screenHelper.getOriginHeight(context);
+
     return MaterialApp(
       title: "Chat Social",
       debugShowCheckedModeBanner: false,
