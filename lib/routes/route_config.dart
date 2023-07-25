@@ -22,7 +22,7 @@ class BaseRoute {
   final IconData? icon;
   final String routeName;
   final String routeTitle;
-  final Widget? Function({RouteSettings? settings})? view;
+  final Widget Function({RouteSettings? settings})? view;
 
   BaseRoute(this.routeName, this.routeTitle, this.icon, {this.view});
 }
