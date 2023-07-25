@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mc_application/modules/authentication/login/login_page.dart';
 import 'package:mc_application/modules/authentication/signup/signup_page.dart';
+import 'package:mc_application/modules/init/initial_page.dart';
 
 class RouteNames {
+  static const String initial = 'Initial';
   static const String home = 'Home';
   static const String login = 'Login';
   static const String signUp = 'SignUp';
@@ -10,6 +12,9 @@ class RouteNames {
 
 class RouteCreator {
   static Map<String, BaseRoute> routes = {
+    //initial
+    RouteNames.initial: BaseRoute(RouteNames.initial, 'Initial', null,
+        view: ({settings}) => InitialPage()),
     //authentication
     RouteNames.login: BaseRoute(RouteNames.login, 'Login', null,
         view: ({settings}) => LoginPage()),

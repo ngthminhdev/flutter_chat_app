@@ -5,7 +5,9 @@ import 'package:mc_application/routes/route_config.dart' as route_config;
 class NavigatorHelper {
   static final NavigatorHelper _navigatorHelper = NavigatorHelper._internal();
   void changeView(BuildContext context, String routeName,
-      {bool isReplaceName = false, Object? arguments}) {
+      {bool isReplaceName = false,
+      PageTransitionType type = PageTransitionType.fade,
+      Object? arguments}) {
     final route = route_config.getRoute(routeName);
     final Widget view = route!.view!.call(settings: null);
 
@@ -13,7 +15,7 @@ class NavigatorHelper {
       Navigator.pushReplacement(
         context,
         PageTransition(
-          type: PageTransitionType.rightToLeft,
+          type: type,
           child: view,
         ),
       );
@@ -21,7 +23,7 @@ class NavigatorHelper {
       Navigator.push(
         context,
         PageTransition(
-          type: PageTransitionType.rightToLeft,
+          type: type,
           child: view,
         ),
       );
