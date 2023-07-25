@@ -20,14 +20,14 @@ class _PasswordInputWidgetState extends State<PasswordInputWidget> {
       maxLines: 1,
       obscureText: widget.model.obscureText,
       style: const TextStyle(
-        fontSize: 16,
+        fontSize: 14,
       ),
       decoration: InputDecoration(
           labelText: 'Password',
           hintText: 'Please enter your password...',
           hintStyle: const TextStyle(
-            fontSize: 14, // Kích thước mới cho hintText
-            color: Colors.grey, // Màu sắc mới cho hintText
+            fontSize: 14,
+            color: Colors.grey,
           ),
           // prefixIcon: const Icon(Icons.key, size: 20),
           suffixIcon: IconButton(

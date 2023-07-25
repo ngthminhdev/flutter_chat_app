@@ -78,7 +78,7 @@ class _SignUpPageState extends ResumableState<SignUpPage>
                   UserNameInputWidget(signUpPageModel),
                   SizedBox(height: screenHelper.setHeight(20)),
                   PasswordInputWidget(signUpPageModel),
-                  SizedBox(height: screenHelper.setHeight(80)),
+                  SizedBox(height: screenHelper.setHeight(85)),
                   SignUpButton(signUpPageModel),
                   SizedBox(height: screenHelper.setHeight(100)),
                   Center(
