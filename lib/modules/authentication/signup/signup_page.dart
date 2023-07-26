@@ -71,7 +71,7 @@ class _SignUpPageState extends ResumableState<SignUpPage>
                     'Sign up',
                     style: TextStyle(
                       fontSize: 21,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                   SizedBox(height: screenHelper.setHeight(10)),
@@ -80,7 +80,7 @@ class _SignUpPageState extends ResumableState<SignUpPage>
                   PasswordInputWidget(signUpPageModel),
                   SizedBox(height: screenHelper.setHeight(85)),
                   SignUpButton(signUpPageModel),
-                  SizedBox(height: screenHelper.setHeight(100)),
+                  SizedBox(height: screenHelper.setHeight(95)),
                   Center(
                     child: RichText(
                         text: TextSpan(children: <TextSpan>[

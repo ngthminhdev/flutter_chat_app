@@ -72,7 +72,7 @@ class _LoginPageState extends ResumableState<LoginPage>
                     'Log in',
                     style: TextStyle(
                       fontSize: 21,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                   SizedBox(height: screenHelper.setHeight(10)),
