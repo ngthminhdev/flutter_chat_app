@@ -110,28 +110,30 @@ class _LoginPageState extends ResumableState<LoginPage>
                       ),
                     ])),
                   ),
-                  SizedBox(height: screenHelper.setHeight(40)),
-                  Center(
-                    child: RichText(
-                        text: TextSpan(children: <TextSpan>[
-                      const TextSpan(
-                        text: 'Don\'t? have a account? ',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      TextSpan(
-                        text: 'Sign up now!',
-                        style: const TextStyle(
-                            color: primaryGreen, fontWeight: FontWeight.w500),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            loginPageModel.moveToSignUp(context);
-                          },
-                      ),
-                    ])),
-                  ),
                 ],
               ),
             ),
+          ),
+        ),
+        bottomNavigationBar: SizedBox(
+          height: screenHelper.getHeightByPercent(0.15),
+          child: Center(
+            child: RichText(
+                text: TextSpan(children: <TextSpan>[
+              const TextSpan(
+                text: 'Don\'t? have a account? ',
+                style: TextStyle(color: Colors.black),
+              ),
+              TextSpan(
+                text: 'Sign up now!',
+                style: const TextStyle(
+                    color: primaryGreen, fontWeight: FontWeight.w500),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    loginPageModel.moveToSignUp(context);
+                  },
+              ),
+            ])),
           ),
         ),
       ),

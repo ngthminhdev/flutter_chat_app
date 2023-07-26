@@ -80,28 +80,30 @@ class _SignUpPageState extends ResumableState<SignUpPage>
                   PasswordInputWidget(signUpPageModel),
                   SizedBox(height: screenHelper.setHeight(85)),
                   SignUpButton(signUpPageModel),
-                  SizedBox(height: screenHelper.setHeight(95)),
-                  Center(
-                    child: RichText(
-                        text: TextSpan(children: <TextSpan>[
-                      const TextSpan(
-                        text: 'Have a account? ',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      TextSpan(
-                        text: 'Log in now!',
-                        style: const TextStyle(
-                            color: primaryGreen, fontWeight: FontWeight.w500),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            signUpPageModel.moveToLogIn(context);
-                          },
-                      ),
-                    ])),
-                  ),
                 ],
               ),
             ),
+          ),
+        ),
+        bottomNavigationBar: SizedBox(
+          height: screenHelper.getHeightByPercent(0.15),
+          child: Center(
+            child: RichText(
+                text: TextSpan(children: <TextSpan>[
+              const TextSpan(
+                text: 'Have a account? ',
+                style: TextStyle(color: Colors.black),
+              ),
+              TextSpan(
+                text: 'Log in now!',
+                style: const TextStyle(
+                    color: primaryGreen, fontWeight: FontWeight.w500),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    signUpPageModel.moveToLogIn(context);
+                  },
+              ),
+            ])),
           ),
         ),
       ),
