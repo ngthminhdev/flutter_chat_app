@@ -24,7 +24,7 @@ class _LoginPageState extends ResumableState<LoginPage>
   double widthScreen = screenHelper.getWidth();
   double heightScreen = screenHelper.getHeight();
   double yPadding = screenHelper.getHeightByPercent(0.02);
-  double xPadding = screenHelper.getWidthByPercent(0.03);
+  double xPadding = screenHelper.getWidthByPercent(0.05);
 
   @override
   Widget build(BuildContext context) {

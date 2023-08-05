@@ -27,7 +27,9 @@ class _LoginButtonState extends State<LoginButton> {
           height: 60,
           child: ElevatedButton(
             style: style,
-            onPressed: () {},
+            onPressed: () {
+              widget.model.login(context);
+            },
             child: const Text(
               'Log in',
               style: TextStyle(

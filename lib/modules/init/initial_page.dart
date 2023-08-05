@@ -48,7 +48,7 @@ class _InitialPageState extends ResumableState<InitialPage>
 
   Stack buildBody(context) {
     //get screen info
-    appData.widthScreen = screenHelper.getOriginHeight(context);
+    appData.widthScreen = screenHelper.getOriginWidth(context);
     appData.heightScreen = screenHelper.getOriginHeight(context);
     return const Stack(
       children: [

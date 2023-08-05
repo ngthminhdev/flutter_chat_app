@@ -27,9 +27,11 @@ class _SignUpButtonState extends State<SignUpButton> {
           height: 60,
           child: ElevatedButton(
             style: style,
-            onPressed: () {},
+            onPressed: () {
+              widget.model.signUp(context);
+            },
             child: const Text(
-              'Log in',
+              'Sign up',
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,

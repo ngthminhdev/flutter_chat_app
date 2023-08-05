@@ -1,7 +1,14 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
 import 'package:mc_application/core/bases/base_page_model.dart';
 import 'package:mc_application/core/helpers/navigator_helper.dart';
+import 'package:mc_application/core/models/user_model.dart';
 import 'package:mc_application/routes/route_config.dart';
+import 'package:mc_application/services/local_storage_service.dart';
 
 class LoginPageModel extends BasePageModel {
   bool obscureText = true;
@@ -14,6 +21,8 @@ class LoginPageModel extends BasePageModel {
   FocusNode passwordFocus = FocusNode();
 
   BuildContext? context;
+
+  LocalStorageService localStorage = LocalStorageService();
 
   bool isValidPassword() {
     return true;
@@ -36,15 +45,32 @@ class LoginPageModel extends BasePageModel {
     navigatorHelper.changeView(context, RouteNames.signUp, isReplaceName: true);
   }
 
-  login(BuildContext context) {
+  login(BuildContext context) async {
     userNameFocus.unfocus();
     passwordFocus.unfocus();
 
-    if (busy) {
-      return;
-    }
+    try {
+      await localStorage.removeJwt();
+      final response = await http.post(
+          Uri.parse('http://172.16.3.224:8000/api/auth/login'),
+          body: {'username': userName.text, 'password': password.text});
 
-    print(userName.toString());
-    print(password.toString());
+      if (response.statusCode == 200) {
+        // print(jsonDecode(response.body)["data"]);
+        final userJson = jsonDecode(response.body)["data"];
+        final user = UserModel.fromJson(userJson);
+        await localStorage.setUserInfo(user);
+
+        Fluttertoast.showToast(msg: 'Login successfully');
+        Timer(Duration(milliseconds: 200), () {
+          navigatorHelper.changeView(context, RouteNames.home,
+              isReplaceName: true);
+        });
+      } else {
+        Fluttertoast.showToast(msg: jsonDecode(response.body)["message"]);
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: '$e');
+    }
   }
 }

@@ -1,4 +1,9 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
 import 'package:mc_application/core/bases/base_page_model.dart';
 import 'package:mc_application/core/helpers/navigator_helper.dart';
 import 'package:mc_application/routes/route_config.dart';
@@ -34,15 +39,26 @@ class SignUpPageModel extends BasePageModel {
     navigatorHelper.changeView(context, RouteNames.login, isReplaceName: true);
   }
 
-  signUp(BuildContext context) {
+  signUp(BuildContext context) async {
     userNameFocus.unfocus();
     passwordFocus.unfocus();
 
-    if (busy) {
-      return;
-    }
+    try {
+      final response = await http.post(
+          Uri.parse('http://192.168.1.43:8000/api/auth/sign-up'),
+          body: {'username': userName.text, 'password': password.text});
 
-    print(userName.toString());
-    print(password.toString());
+      if (response.statusCode == 201) {
+        Fluttertoast.showToast(msg: 'Register successfully');
+        Timer(const Duration(milliseconds: 500), () {
+          navigatorHelper.changeView(context, RouteNames.login,
+              isReplaceName: true);
+        });
+      } else {
+        Fluttertoast.showToast(msg: jsonDecode(response.body)["message"]);
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: '$e');
+    }
   }
 }

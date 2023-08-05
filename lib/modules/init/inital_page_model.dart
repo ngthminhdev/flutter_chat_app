@@ -9,7 +9,7 @@ import 'package:page_transition/page_transition.dart';
 class InitialPageModel extends BasePageModel {
   void redirectPage(BuildContext context) async {
     Timer(const Duration(milliseconds: 500), () {
-      navigatorHelper.changeView(context, RouteNames.login,
+      navigatorHelper.changeView(context, RouteNames.home,
           isReplaceName: true, type: PageTransitionType.fade);
     });
   }
