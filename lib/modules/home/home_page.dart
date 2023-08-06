@@ -60,24 +60,44 @@ class _HomePageState extends ResumableState<HomePage>
   buildBody(context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: yPadding, horizontal: xPadding),
-        child: Column(children: [
-          AddFriendButton(homePageModel),
-          SizedBox(height: screenHelper.setHeight(20)),
-          NavBar(homePageModel),
-          SizedBox(height: screenHelper.setHeight(20)),
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Conversation();
-              },
-            ),
-          )
-        ]),
-      ),
+      body: FutureBuilder(
+          future: homePageModel.getConversation(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text('Đã xảy ra lỗi: ${snapshot.error}'),
+              );
+            } else {
+              return Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: yPadding, horizontal: xPadding),
+                child: Column(children: [
+                  AddFriendButton(homePageModel),
+                  SizedBox(height: screenHelper.setHeight(20)),
+                  NavBar(homePageModel),
+                  SizedBox(height: screenHelper.setHeight(20)),
+                  Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: homePageModel.conversationList.length,
+                      itemBuilder: (context, index) {
+                        return Conversation(
+                            '${homePageModel.conversationList[index].id}',
+                            username: '${homePageModel.conversationList[index].username}',
+                            isOnline: homePageModel.conversationList[index].isOnline,
+                            onClick: homePageModel.onConversationClick
+                          );
+                      },
+                    ),
+                  )
+                ]),
+              );
+            }
+          }),
     );
   }
 

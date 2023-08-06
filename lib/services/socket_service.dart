@@ -1,3 +1,4 @@
+import 'package:mc_application/app_data.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
 class SocketService {
@@ -12,8 +13,7 @@ class SocketService {
     };
     _socket = io.io(
         // 'http://13.228.119.159:8000/socket',
-        // 'http://172.16.3.224:8000/socket',
-        'http://192.168.150.111:3000',
+        '${appData.apiHost}/socket',
         io.OptionBuilder()
             .setTransports(['websocket', 'polling'])
             .disableAutoConnect()

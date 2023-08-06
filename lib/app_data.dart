@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class AppData {
   static final AppData _app = AppData._internal();
-
+  
   String env = '';
   int? version = 0;
-  String apiHost = '';
+  String apiHost = 'http://13.228.119.159:8000';
   String? apiVersion = '';
   String apiUrl = '';
   String? dbName = '';

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:mc_application/app_data.dart';
 import 'package:mc_application/core/bases/base_page_model.dart';
 import 'package:mc_application/core/helpers/navigator_helper.dart';
 import 'package:mc_application/core/models/user_model.dart';
@@ -52,9 +53,10 @@ class LoginPageModel extends BasePageModel {
     try {
       await localStorage.removeJwt();
       final response = await http.post(
-          Uri.parse('http://172.16.3.224:8000/api/auth/login'),
+          // Uri.parse('http://172.16.3.224:8000/api/auth/login'),
+          Uri.parse('${appData.apiHost}/api/auth/login'),
           body: {'username': userName.text, 'password': password.text});
-
+      
       if (response.statusCode == 200) {
         // print(jsonDecode(response.body)["data"]);
         final userJson = jsonDecode(response.body)["data"];

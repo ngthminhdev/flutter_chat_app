@@ -2,13 +2,15 @@ class UserModel {
   final String id;
   final String username;
   final String avatar;
-  final String accessToken;
+  String? accessToken;
+  bool? isOnline = false;
 
   UserModel({
     required this.id,
     required this.username,
     required this.avatar,
-    required this.accessToken,
+    this.accessToken,
+    this.isOnline,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -17,6 +19,7 @@ class UserModel {
       username: json['username'],
       avatar: json['avatar'],
       accessToken: json['accessToken'],
+      isOnline: json['isOnline'],
     );
   }
 
@@ -26,6 +29,7 @@ class UserModel {
       "avatar": avatar,
       "username": username,
       "accessToken": accessToken,
+      "isOnline": isOnline,
     };
     return data;
   }
