@@ -11,6 +11,7 @@ class LocalStorageService {
 
   final String jwt = 'JWT';
   final String userInfo = 'UserInfo';
+  final String roomId = 'RoomId';
 
   bool get isInitialized => _isInitialized;
 
@@ -35,6 +36,14 @@ class LocalStorageService {
 
   Future<bool> setJwt(String value) async {
     return _pref.setString(jwt, value);
+  }
+
+  Future<String> getRoomId() async {
+    return _pref.getString(roomId) ?? '';
+  }
+
+  Future<bool> setRoomId(String value) async {
+    return _pref.setString(roomId, value);
   }
 
   Future<bool> removeJwt() async {

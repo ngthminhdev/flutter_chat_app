@@ -58,7 +58,6 @@ class LoginPageModel extends BasePageModel {
           body: {'username': userName.text, 'password': password.text});
       
       if (response.statusCode == 200) {
-        // print(jsonDecode(response.body)["data"]);
         final userJson = jsonDecode(response.body)["data"];
         final user = UserModel.fromJson(userJson);
         await localStorage.setUserInfo(user);

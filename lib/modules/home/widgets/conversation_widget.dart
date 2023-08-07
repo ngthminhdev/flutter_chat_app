@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:mc_application/core/appearances/colors.dart';
 import 'package:mc_application/core/helpers/screen_helper.dart';
+import 'package:mc_application/services/avatar_service.dart';
 
 class Conversation extends StatefulWidget {
   final String userId;
   final String username;
+  final String latestMessage;
+  final DateTime time;
   final bool isOnline;
-  final Function(String) onClick;
+  final dynamic onClick;
 
   const Conversation(this.userId,
-      {required this.username, required this.isOnline, required this.onClick, super.key});
+      {required this.username,
+      required this.isOnline,
+      required this.latestMessage,
+      required this.time,
+      required this.onClick,
+      super.key});
 
   @override
   State<Conversation> createState() => _ConversationState();
@@ -19,7 +27,8 @@ class _ConversationState extends State<Conversation> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => widget.onClick(widget.userId),
+      onTap: () => widget.onClick(
+          context, widget.userId, widget.username, widget.isOnline.toString()),
       child: Container(
         decoration: const BoxDecoration(color: Colors.white),
         padding: EdgeInsets.symmetric(
@@ -32,14 +41,7 @@ class _ConversationState extends State<Conversation> {
               Row(
                 children: [
                   Stack(children: [
-                    SizedBox(
-                      height: screenHelper.setHeight(50),
-                      width: screenHelper.setWidth(50),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: Image.asset('assets/images/avatar2.jpg'),
-                      ),
-                    ),
+                    AvatarFromUsername(username: widget.username),
                     Positioned(
                       bottom: 0,
                       right: 0,
@@ -65,7 +67,7 @@ class _ConversationState extends State<Conversation> {
                         ),
                         SizedBox(height: screenHelper.setWidth(5)),
                         Text(
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, ',
+                            widget.latestMessage,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                             style: TextStyle(
@@ -81,25 +83,25 @@ class _ConversationState extends State<Conversation> {
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            '20:00',
+                           (widget.time).toString().substring(11, 16),
                             style: TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(height: screenHelper.setHeight(10)),
-                          Container(
-                            width: screenHelper.setWidth(15),
-                            height: screenHelper.setHeight(15),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle, color: primaryGreen),
-                            child: Text(
-                              '3',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          )
+                          // SizedBox(height: screenHelper.setHeight(10)),
+                          // Container(
+                          //   width: screenHelper.setWidth(15),
+                          //   height: screenHelper.setHeight(15),
+                          //   decoration: BoxDecoration(
+                          //       shape: BoxShape.circle, color: primaryGreen),
+                          //   child: Text(
+                          //     '3',
+                          //     textAlign: TextAlign.center,
+                          //     style: TextStyle(
+                          //         color: Colors.white,
+                          //         fontSize: 12,
+                          //         fontWeight: FontWeight.bold),
+                          //   ),
+                          // )
                         ]),
                   )
                 ],

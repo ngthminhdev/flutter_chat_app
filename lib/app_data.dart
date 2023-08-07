@@ -6,6 +6,8 @@ class AppData {
   String env = '';
   int? version = 0;
   String apiHost = 'http://13.228.119.159:8000';
+  // String apiHost = 'http://172.16.3.224:8000';
+  // String apiHost = 'http://192.168.150.111:8000';
   String? apiVersion = '';
   String apiUrl = '';
   String? dbName = '';

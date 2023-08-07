@@ -7,9 +7,10 @@ class NavigatorHelper {
   void changeView(BuildContext context, String routeName,
       {bool isReplaceName = false,
       PageTransitionType type = PageTransitionType.fade,
-      Object? arguments}) {
+      Object? arguments,
+      Map<String, String>? params}) {
     final route = route_config.getRoute(routeName);
-    final Widget view = route!.view!.call(settings: null);
+    final Widget view = route!.view!.call(settings: null, params: params);
 
     if (isReplaceName) {
       Navigator.pushReplacement(

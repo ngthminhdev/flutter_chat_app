@@ -29,7 +29,7 @@ class RouteCreator {
     //chat
     RouteNames.chat: BaseRoute(RouteNames.chat, 'Chat', null,
         view: ({settings, params}) => ChatPage(
-              params: {'id': 'user_id_123'},
+              params: params,
             ))
   };
 }
