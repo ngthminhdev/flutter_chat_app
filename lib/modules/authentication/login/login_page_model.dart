@@ -10,6 +10,7 @@ import 'package:mc_application/core/helpers/navigator_helper.dart';
 import 'package:mc_application/core/models/user_model.dart';
 import 'package:mc_application/routes/route_config.dart';
 import 'package:mc_application/services/local_storage_service.dart';
+import 'package:mc_application/services/sql_lite_service.dart';
 
 class LoginPageModel extends BasePageModel {
   bool obscureText = true;
@@ -61,6 +62,7 @@ class LoginPageModel extends BasePageModel {
         final userJson = jsonDecode(response.body)["data"];
         final user = UserModel.fromJson(userJson);
         await localStorage.setUserInfo(user);
+        SqfliteUserService.insertUser(user);
 
         Fluttertoast.showToast(msg: 'Login successfully');
         Timer(Duration(milliseconds: 200), () {
